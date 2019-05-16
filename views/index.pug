@@ -1,0 +1,32 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title TRENDS
+    link(href='https://fonts.googleapis.com/css?family=Dosis:400,700', rel='stylesheet')
+    link(href='./stylesheets/style.css', rel='stylesheet')
+  body
+    #root
+
+    form#formu(action='trends', method='get', name='formulario')
+      |    Pais:
+      input(type='text', name='pais',id='pais', value='', required='')
+      br
+      |    Categoria:
+      input(type='text', name='categoria',id='categoria', value='')
+      br
+      |    Columnas:
+      input(type='number', name='columnas', value='',size='1',min='3', max='5',required='')
+      |    Filas:
+      input(type='number', name='filas', value='',size='1',min='3', max='5',required='')
+      br
+      |    Nombre:
+      input(type='radio', name='seleccion', value='nombre')
+      |    Imagen:
+      input(type='radio', name='seleccion', value='imagen')
+      br
+      input(type='submit', value='   Enviar   ')
+
+
+
