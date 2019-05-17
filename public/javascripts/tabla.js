@@ -47,14 +47,12 @@ request.onload = function () {
                     celda.appendChild(textoCelda);
                 } else {
                     //var textoCelda = document.createTextNode(data[k].url);
-                    //var textoCelda=document.createTextNode(getItems(data[k].keyword));
                     //celda.innerHTML='<img src='+getItems(data[k].keyword)+'' width="20" height="20" />';
                     var img = document.createElement('img');
                     img.src=getItems(sitio,data[k].keyword);
                     celda.appendChild(img);
                 }
 
-                //celda.appendChild(textoCelda);
                 fila.appendChild(celda);
                 k++;
             }
@@ -78,7 +76,7 @@ request.onload = function () {
 }
 request.send();
 
-//-----------------Ordenar los trends aleatoriamente-------
+//-----------------Ordenar los trends aleatoriamente----------------------------
 function shuffle(data) {
     var cantElem = data.length, aux, random;
 
@@ -96,7 +94,7 @@ function shuffle(data) {
     }
     return data;
 }
-//-----------------------------------------------------------
+//--------------------Obtener url de imagen---------------------------------------
 function getItems(dataP) {
 var request = new XMLHttpRequest();
 request.open('GET', "https://api.mercadolibre.com/sites/"+sitio+"/search?q="+dataP, true);
