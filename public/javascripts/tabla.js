@@ -46,10 +46,8 @@ request.onload = function () {
                     var textoCelda = document.createTextNode(data[k].keyword);
                     celda.appendChild(textoCelda);
                 } else {
-                    //var textoCelda = document.createTextNode(data[k].url);
-                    //celda.innerHTML='<img src='+getItems(data[k].keyword)+'' width="20" height="20" />';
                     var img = document.createElement('img');
-                    img.src=getItems(sitio,data[k].keyword);
+                    img.src = getItems(sitio, data[k].keyword);
                     celda.appendChild(img);
                 }
 
@@ -94,24 +92,25 @@ function shuffle(data) {
     }
     return data;
 }
+
 //--------------------Obtener url de imagen---------------------------------------
 function getItems(dataP) {
-var request = new XMLHttpRequest();
-request.open('GET', "https://api.mercadolibre.com/sites/"+sitio+"/search?q="+dataP, true);
-request.onload = function () {
-    // Begin accessing JSON data here
-    data = JSON.parse(this.response);
-    if (request.status >= 200 && request.status < 400) {
-        var url=data.results[0].thumbnail;
-        console.log(url);
-        return url;
-    } else {
-        const errorMessage = document.createElement('marquee');
-        errorMessage.textContent = "No funciona!";
-        document.getElementsByTagName("body").appendChild(errorMessage);
-        return null;
+    var request = new XMLHttpRequest();
+    request.open('GET', "https://api.mercadolibre.com/sites/" + sitio + "/search?q=" + dataP, true);
+    request.onload = function () {
+        // Begin accessing JSON data here
+        data = JSON.parse(this.response);
+        if (request.status >= 200 && request.status < 400) {
+            var url = data.results[0].thumbnail;
+            console.log(url);
+            return url;
+        } else {
+            const errorMessage = document.createElement('marquee');
+            errorMessage.textContent = "No funciona!";
+            document.getElementsByTagName("body").appendChild(errorMessage);
+            return null;
+        }
     }
-}
-request.send();
+    request.send();
 }
 
