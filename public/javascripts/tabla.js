@@ -94,14 +94,14 @@ function shuffle(data) {
 }
 
 //--------------------Obtener url de imagen---------------------------------------
-function getItems(dataP) {
+function getItems(sitio,dataP) {
     var request = new XMLHttpRequest();
     request.open('GET', "https://api.mercadolibre.com/sites/" + sitio + "/search?q=" + dataP, true);
     request.onload = function () {
         // Begin accessing JSON data here
-        data = JSON.parse(this.response);
+        data1 = JSON.parse(this.response);
         if (request.status >= 200 && request.status < 400) {
-            var url = data.results[0].thumbnail;
+            var url = data1.results[0].thumbnail;
             console.log(url);
             return url;
         } else {
