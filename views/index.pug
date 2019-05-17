@@ -9,11 +9,14 @@ html(lang='en')
   body
     #root
     form#formu(action='trends', method='get', name='formulario')
-      |    Pais:
-      input(type='text', name='pais',id='pais', value='', required='')
+
+      |   Sitio:
+      select#sitio.custom-select(name='sitio',onchange='getCategories()', required='')
+          option(selected='')
       br
-      |    Categoria:
-      input(type='text', name='categoria',id='categoria', value='')
+      |   Categoria:
+      select#categoria.custom-select(name='categoria')
+          option(selected='')
       br
       |    Columnas:
       input(type='number', name='columnas', value='',size='1',min='3', max='5',required='')

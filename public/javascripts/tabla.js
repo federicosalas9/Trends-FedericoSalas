@@ -1,6 +1,6 @@
 var url_string = window.location.href;
 var url = new URL(url_string);
-var pais = url.searchParams.get("pais");
+var sitio = url.searchParams.get("sitio");
 var categoria = url.searchParams.get("categoria");
 var filas = url.searchParams.get("filas");
 var columnas = url.searchParams.get("columnas");
@@ -24,7 +24,14 @@ var tabla = document.createElement("table");
 var tblBody = document.createElement("tbody");
 
 var request = new XMLHttpRequest();
-request.open('GET', 'https://api.mercadolibre.com/trends/' + pais + '/' + categoria, true);
+
+if(categoria == ""){
+    request.open('GET', 'https://api.mercadolibre.com/trends/' + sitio, true);
+}
+else{
+    request.open('GET', 'https://api.mercadolibre.com/trends/' + sitio + '/' + categoria, true);
+}
+
 
 request.onload = function () {
     // Begin accessing JSON data here
@@ -33,12 +40,12 @@ request.onload = function () {
         // Crea las celdas
         var k = 0;
         for (var i = 0; i < filas; i++) {
-            // Crea las hileras de la tabla
+            // Crea las filas de la tabla
             var fila = document.createElement("tr");
 
             for (var j = 0; j < columnas; j++) {
 
-                const card = document.createElement('div');
+                /*const card = document.createElement('div');
                 card.setAttribute('class', 'card');
                 const h1 = document.createElement('h1');
                 h1.textContent = data[k].keyword;
@@ -47,7 +54,13 @@ request.onload = function () {
                 container.appendChild(card);
                 card.appendChild(h1);
                 card.appendChild(p);
+                k++;*/
+                var celda = document.createElement('td');
+                var textoCelda = document.createTextNode(data[k].keyword);
+                celda.appendChild(textoCelda);
+                fila.appendChild(celda);
                 k++;
+
             }
             // agrega la fila al final de la tabla (al final del elemento tblbody)
             tblBody.appendChild(fila);
@@ -58,6 +71,9 @@ request.onload = function () {
         body.appendChild(tabla);
         // modifica el atributo "border" de la tabla y lo fija a "2";
         tabla.setAttribute("border", "2");
+        tabla.setAttribute("align", "center");
+        tabla.setAttribute("wodth", "500");
+        tabla.setAttribute("height", "500");
     } else {
         const errorMessage = document.createElement('marquee');
         errorMessage.textContent = "No funciona!";
