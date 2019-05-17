@@ -4,17 +4,14 @@ var sitio = url.searchParams.get("sitio");
 var categoria = url.searchParams.get("categoria");
 var filas = url.searchParams.get("filas");
 var columnas = url.searchParams.get("columnas");
+var seleccion = url.searchParams.get("seleccion");
 
 
 const app = document.getElementById('root');
-const logo = document.createElement('img');
-
-logo.src = './images/logo.png';
 
 const container = document.createElement('div');
 container.setAttribute('class', 'container');
 
-app.appendChild(logo);
 app.appendChild(container);
 
 var body = document.getElementsByTagName("body")[0];
@@ -25,10 +22,9 @@ var tblBody = document.createElement("tbody");
 
 var request = new XMLHttpRequest();
 
-if(categoria == ""){
+if (categoria == "") {
     request.open('GET', 'https://api.mercadolibre.com/trends/' + sitio, true);
-}
-else{
+} else {
     request.open('GET', 'https://api.mercadolibre.com/trends/' + sitio + '/' + categoria, true);
 }
 
@@ -45,22 +41,16 @@ request.onload = function () {
 
             for (var j = 0; j < columnas; j++) {
 
-                /*const card = document.createElement('div');
-                card.setAttribute('class', 'card');
-                const h1 = document.createElement('h1');
-                h1.textContent = data[k].keyword;
-                const p = document.createElement('p');
-                p.textContent = data[k].url;
-                container.appendChild(card);
-                card.appendChild(h1);
-                card.appendChild(p);
-                k++;*/
                 var celda = document.createElement('td');
-                var textoCelda = document.createTextNode(data[k].keyword);
+                if (seleccion == "nombre") {
+                    var textoCelda = document.createTextNode(data[k].keyword);
+                } else {
+                    var textoCelda = document.createTextNode(data[k].url);
+                }
+
                 celda.appendChild(textoCelda);
                 fila.appendChild(celda);
                 k++;
-
             }
             // agrega la fila al final de la tabla (al final del elemento tblbody)
             tblBody.appendChild(fila);
