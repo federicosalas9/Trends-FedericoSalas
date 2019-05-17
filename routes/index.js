@@ -10,4 +10,9 @@ router.get('/trends', function(req, res, next) {
   res.render('trends');
 });
 
+router.get('/prueba', function(req, res, next) {
+  res.render('prueba');
+});
+
+
 module.exports = router;

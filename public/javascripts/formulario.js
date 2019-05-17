@@ -33,6 +33,12 @@ request.onload = function () {
 request.send();
 //----------------------------Carga de categorias segun el sitio elegido----------------
 function getCategories() {
+    if(sitio.options[sitio.selectedIndex].innerHTML=="Paraguay"){
+        alert("Paraguay no tiene tendencias")
+    }
+    if(sitio.options[sitio.selectedIndex].innerHTML=="Cuba"){
+        alert("Cuba no tiene tendencias")
+    }
     data.forEach(sites => {
         if (sitio.options[sitio.selectedIndex].innerHTML == sites.name){
             siteId = sites.id;
